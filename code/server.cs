@@ -3,12 +3,13 @@ using System.Net;
 using System.Net.Sockets;
 using System.Text;
 using System.Threading;
+
 class Server
 {
-    private static TcpListener listener;
+    private static TcpListener? listener;
     private static bool isRunning = false;
 
-    public static void Main(string[] args)
+    public static void RunServer()
     {
         int port = 5000; // You can change this to any port you want
         listener = new TcpListener(IPAddress.Any, port);
@@ -32,9 +33,11 @@ class Server
         }
     }
 
-    private static void HandleClient(object obj)
+    private static void HandleClient(object? obj)
     {
-        TcpClient client = (TcpClient)obj;
+        if (obj is not TcpClient client)
+            return;
+
         NetworkStream stream = client.GetStream();
         byte[] buffer = new byte[1024];
         int bytesRead;

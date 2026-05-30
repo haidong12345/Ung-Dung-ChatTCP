@@ -5,10 +5,10 @@ using System.Threading;
 
 class Client
 {
-    private static TcpClient client;
-    private static NetworkStream stream;
+    private static TcpClient? client;
+    private static NetworkStream? stream;
 
-    public static void Main(string[] args)
+    public static void RunClient()
     {
         try
         {
@@ -23,7 +23,10 @@ class Client
 
             while (true)
             {
-                string message = Console.ReadLine();
+                string? message = Console.ReadLine();
+                if (string.IsNullOrEmpty(message))
+                    continue;
+
                 if (message == "exit")
                     break;
 
@@ -37,8 +40,8 @@ class Client
         }
         finally
         {
-            stream.Close();
-            client.Close();
+            stream?.Close();
+            client?.Close();
         }
     }
 
@@ -49,7 +52,7 @@ class Client
 
         try
         {
-            while ((bytesRead = stream.Read(buffer, 0, buffer.Length)) != 0)
+            while (stream != null && (bytesRead = stream.Read(buffer, 0, buffer.Length)) != 0)
             {
                 string message = Encoding.UTF8.GetString(buffer, 0, bytesRead);
                 Console.WriteLine($"Server: {message}");

@@ -14,11 +14,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\LapTrinhMang\\MyApp\\MyApp.csproj",
+      "projectUniqueName": "D:\\LapTrinhMang\\Ung-Dung-ChatTCP\\MyApp.csproj",
       "projectName": "MyApp",
-      "projectPath": "D:\\LapTrinhMang\\MyApp\\MyApp.csproj",
+      "projectPath": "D:\\LapTrinhMang\\Ung-Dung-ChatTCP\\MyApp.csproj",
       "packagesPath": "C:\\Users\\USER\\.nuget\\packages\\",
-      "outputPath": "D:\\LapTrinhMang\\MyApp\\obj\\",
+      "outputPath": "D:\\LapTrinhMang\\Ung-Dung-ChatTCP\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
