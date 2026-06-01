@@ -1,8 +1,8 @@
-# Ứng dụng Chat TCP (C# WinForms)
+# Ứng dụng Chat TCP 
 
-Ứng dụng chat **desktop C#** dùng **TCP socket** + **JSON**, không dùng web.
+Ứng dụng chat **desktop C#** 
 
-## Cấu trúc (dễ đọc)
+## Cấu trúc
 
 | Thư mục / file | Việc làm |
 |----------------|----------|
