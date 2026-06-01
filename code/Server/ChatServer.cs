@@ -26,9 +26,9 @@ public static class ChatServer
         _listener.Start();
         _running = true;
 
-        Console.WriteLine($"=== Chat Server TCP - cổng {Port} ===");
+        Console.WriteLine($"=== Chat Server TCP - cong {Port} ===");
         Console.WriteLine("Admin mặc định: admin / admin123");
-        Console.WriteLine("Nhấn Enter để dừng server...");
+        Console.WriteLine("Nhan Enter để dừng server...");
 
         _ = Task.Run(AcceptLoop);
         Console.ReadLine();
@@ -48,7 +48,7 @@ public static class ChatServer
             }
             catch (Exception ex) when (_running)
             {
-                Console.WriteLine($"Lỗi accept: {ex.Message}");
+                Console.WriteLine($"Loi accept: {ex.Message}");
             }
         }
     }

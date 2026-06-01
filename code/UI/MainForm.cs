@@ -161,7 +161,7 @@ public class MainForm : Form
                     var from = te.GetProperty("fromUserId").GetString();
                     var typing = te.GetProperty("isTyping").GetBoolean();
                     if (_chatWith?.Id == from)
-                        _lblTyping.Text = typing ? $"{_chatWith.DisplayName} đang nhập..." : "";
+                        _lblTyping.Text = typing ? $"{_chatWith?.DisplayName} đang nhập..." : "";
                 }
                 break;
             case "MESSAGES_SEEN":
@@ -171,7 +171,7 @@ public class MainForm : Form
                 _ = RefreshUsersAsync();
                 break;
             case "ACCOUNT_LOCKED":
-                MessageBox.Show("Tài khoản bị khóa!");
+                MessageBox.Show("Tài khoản đã bị khóa!");
                 Close();
                 break;
         }
@@ -477,7 +477,7 @@ public class MainForm : Form
                 Type = "CHANGE_PASSWORD",
                 Payload = new ChangePasswordPayload { Token = _client.Token!, OldPassword = oldP.Text, NewPassword = newP.Text },
             }, "CHANGE_PASSWORD_OK");
-            MessageBox.Show(resp.IsSuccess ? "OK" : resp.Error);
+            MessageBox.Show(resp.IsSuccess ? "Đã đổi mật khẩu thành công!" : resp.Error);
             if (resp.IsSuccess) f.Close();
         };
         f.Controls.AddRange(new Control[] { new Label { Text = "MK cũ:", Location = new Point(20, 24), AutoSize = true }, oldP, new Label { Text = "MK mới:", Location = new Point(20, 59), AutoSize = true }, newP, btn });

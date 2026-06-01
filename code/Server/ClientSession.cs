@@ -87,7 +87,7 @@ public class ClientSession : IDisposable
             case "GET_FILE": await HandleGetFile(packet); break;
             default:
                 Console.WriteLine($"Lệnh không hợp lệ: '{packet.Type}'");
-                await SendAsync(new Packet { Type = "ERROR", Ok = false, Error = $"Lệnh không hợp lệ: {packet.Type}" });
+                await SendAsync(new Packet { Type = "ERROR", Ok = false, Error = $"Lenh khong hop le: {packet.Type}" });
                 break;
         }
     }
@@ -95,7 +95,7 @@ public class ClientSession : IDisposable
     private UserAccount? GetUserFromToken(Packet p)
     {
         var auth = PacketIO.ParsePayload<Dictionary<string, string>>(p.Payload);
-        // token gửi kèm mọi request sau login
+        // token gửi kèm mọi yêu cầu sau login
         string? token = auth?.GetValueOrDefault("token");
         if (string.IsNullOrEmpty(token) && p.Payload is System.Text.Json.JsonElement el
             && el.TryGetProperty("token", out var t))
@@ -235,7 +235,7 @@ public class ClientSession : IDisposable
         var code = Random.Shared.Next(100000, 999999).ToString();
         users[idx].ResetCode = code;
         DataStore.SaveUsers(users);
-        // Demo: trả mã về client (thực tế gửi email)
+        // Demo: trả mã về client (thực tế gửi email) (thực tế gửi email)
         await ReplyAsync(p, new { resetCode = code, message = "Mã đặt lại (demo):" });
     }
 
@@ -260,7 +260,7 @@ public class ClientSession : IDisposable
         var user = RequireUser(p);
         if (user is null) return;
 
-        // Hiện tất cả user khác (trừ bản thân) để chat 1-1
+        // Hiển thị tất cả user khác (trừ bản thân) để chat 1-1
         var users = DataStore.LoadUsers()
             .Where(u => u.Id != user.Id)
             .Select(u => UserInfo.From(u, ChatServer.Online.ContainsKey(u.Id)))
@@ -429,7 +429,7 @@ public class ClientSession : IDisposable
         if (user is null) return;
         if (user.Role != "admin")
         {
-            await ReplyAsync(p, null, false, "Chỉ admin");
+            await ReplyAsync(p, null, false, "Chi admin");
             return;
         }
 
@@ -507,13 +507,13 @@ public class ClientSession : IDisposable
         var token = GetToken(p);
         if (token == null || !ChatServer.Sessions.TryGetValue(token, out var uid))
         {
-            _ = SendAsync(new Packet { Type = p.Type + "_OK", Ok = false, Error = "Chưa đăng nhập" });
+            _ = SendAsync(new Packet { Type = p.Type + "_OK", Ok = false, Error = "Chua dang nhap" });
             return null;
         }
         var user = DataStore.LoadUsers().FirstOrDefault(u => u.Id == uid);
         if (user is null || user.Status == "locked")
         {
-            _ = SendAsync(new Packet { Type = p.Type + "_OK", Ok = false, Error = "Tài khoản bị khóa" });
+            _ = SendAsync(new Packet { Type = p.Type + "_OK", Ok = false, Error = "Tài khoản đã bị khóa" });
             return null;
         }
         UserId ??= uid;

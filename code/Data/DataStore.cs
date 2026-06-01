@@ -39,7 +39,7 @@ public static class DataStore
             Id = NewId(),
             Username = "admin",
             PasswordHash = HashPassword("admin123"),
-            DisplayName = "Quản trị viên",
+            DisplayName = "Quan tri vien",
             Role = "admin",
             Status = "active",
         });

@@ -7,7 +7,6 @@ namespace ChatApp.Client;
 /// <summary>Kết nối TCP tới server, gửi/nhận Packet</summary>
 public class ChatClient : IDisposable
 {
-    private readonly SemaphoreSlim _sendLock = new(1, 1);
     private TcpClient? _tcp;
     private NetworkStream? _stream;
     private CancellationTokenSource? _cts;
@@ -40,45 +39,30 @@ public class ChatClient : IDisposable
         }
     }
 
-    public async Task<Packet> SendAndWaitAsync(Packet request, string okType, int timeoutMs = 15000)
+    public async Task<Packet> SendAndWaitAsync(Packet request, string okType, int timeoutMs = 10000)
     {
         var tcs = new TaskCompletionSource<Packet>();
-        var expectedOk = okType.ToUpperInvariant();
-
         void Handler(Packet p)
         {
-            var t = (p.Type ?? "").ToUpperInvariant();
-            if (t == expectedOk || t == "ERROR" || t == request.Type.ToUpperInvariant() + "_OK")
+            if (p.Type == okType || p.Type == "ERROR" || (p.Type == request.Type + "_OK"))
+            {
+                OnPacket -= Handler;
                 tcs.TrySetResult(p);
+            }
         }
-
         OnPacket += Handler;
-        try
-        {
-            await SendAsync(request);
-            var done = await Task.WhenAny(tcs.Task, Task.Delay(timeoutMs));
-            if (done != tcs.Task)
-                return new Packet { Type = okType, Ok = false, Error = "Hết thời gian chờ (server có đang chạy không?)" };
-            return await tcs.Task;
-        }
-        finally
-        {
-            OnPacket -= Handler;
-        }
+        await SendAsync(request);
+        var done = await Task.WhenAny(tcs.Task, Task.Delay(timeoutMs));
+        OnPacket -= Handler;
+        if (done != tcs.Task)
+            return new Packet { Type = okType, Ok = false, Error = "Hết thời gian chờ" };
+        return await tcs.Task;
     }
 
     public async Task SendAsync(Packet packet)
     {
-        if (_stream is null) throw new InvalidOperationException("Chưa kết nối server");
-        await _sendLock.WaitAsync();
-        try
-        {
-            await PacketIO.SendAsync(_stream, packet);
-        }
-        finally
-        {
-            _sendLock.Release();
-        }
+        if (_stream is null) throw new InvalidOperationException("Chưa kết nối");
+        await PacketIO.SendAsync(_stream, packet);
     }
 
     public void SetAuth(AuthResult auth)
