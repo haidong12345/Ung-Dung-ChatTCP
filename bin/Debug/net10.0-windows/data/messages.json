@@ -1,0 +1,92 @@
+[
+  {
+    "Id": "8882f8ff21cf45cd",
+    "FromUserId": "94a55c8d00d4450b",
+    "ToUserId": "7a0d4be493fd4b14",
+    "Type": "text",
+    "Content": "hi",
+    "FilePath": "",
+    "FileName": "",
+    "Recalled": false,
+    "SeenBy": [
+      "94a55c8d00d4450b",
+      "7a0d4be493fd4b14"
+    ],
+    "CreatedAt": "2026-06-01T05:12:59.3993746Z"
+  },
+  {
+    "Id": "8666c60303be40ba",
+    "FromUserId": "7a0d4be493fd4b14",
+    "ToUserId": "94a55c8d00d4450b",
+    "Type": "text",
+    "Content": "ch\u00E0o b\u1EA1n",
+    "FilePath": "",
+    "FileName": "",
+    "Recalled": false,
+    "SeenBy": [
+      "7a0d4be493fd4b14",
+      "94a55c8d00d4450b"
+    ],
+    "CreatedAt": "2026-06-01T05:13:45.8877709Z"
+  },
+  {
+    "Id": "d15376ec8f0d4511",
+    "FromUserId": "94a55c8d00d4450b",
+    "ToUserId": "7a0d4be493fd4b14",
+    "Type": "text",
+    "Content": "",
+    "FilePath": "",
+    "FileName": "",
+    "Recalled": true,
+    "SeenBy": [
+      "94a55c8d00d4450b",
+      "7a0d4be493fd4b14"
+    ],
+    "CreatedAt": "2026-06-01T05:23:54.8418954Z"
+  },
+  {
+    "Id": "0b7874d095864317",
+    "FromUserId": "94a55c8d00d4450b",
+    "ToUserId": "7a0d4be493fd4b14",
+    "Type": "text",
+    "Content": "",
+    "FilePath": "",
+    "FileName": "",
+    "Recalled": true,
+    "SeenBy": [
+      "94a55c8d00d4450b",
+      "7a0d4be493fd4b14"
+    ],
+    "CreatedAt": "2026-06-01T05:24:19.5800871Z"
+  },
+  {
+    "Id": "0d3fcd266e354c08",
+    "FromUserId": "94a55c8d00d4450b",
+    "ToUserId": "7a0d4be493fd4b14",
+    "Type": "image",
+    "Content": "",
+    "FilePath": "639158882721347962_bced9cac1cfe4923.png",
+    "FileName": "\u1EA2nh ch\u1EE5p m\u00E0n h\u00ECnh 2026-05-18 163837.png",
+    "Recalled": true,
+    "SeenBy": [
+      "94a55c8d00d4450b",
+      "7a0d4be493fd4b14"
+    ],
+    "CreatedAt": "2026-06-01T05:24:32.14227Z"
+  },
+  {
+    "Id": "a889f3e2f6614c6e",
+    "FromUserId": "7a0d4be493fd4b14",
+    "ToUserId": "94a55c8d00d4450b",
+    "Type": "text",
+    "Content": "hi",
+    "FilePath": "",
+    "FileName": "",
+    "Recalled": false,
+    "SeenBy": [
+      "7a0d4be493fd4b14",
+      "94a55c8d00d4450b"
+    ],
+    "CreatedAt": "2026-06-01T05:25:13.3497928Z"
+  }
+]
