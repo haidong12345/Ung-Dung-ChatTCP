@@ -4,6 +4,10 @@ using ChatApp.Network;
 
 namespace ChatApp.UI;
 
+/// <summary>
+/// Màn hình đăng nhập / đăng ký / quên mật khẩu.
+/// Luồng: kết nối TCP -> gửi LOGIN/REGISTER -> nhận token -> mở MainForm
+/// </summary>
 public class LoginForm : Form
 {
     private readonly TextBox _txtServer = new() { Text = "127.0.0.1:5000", Width = 280 };
@@ -66,12 +70,12 @@ public class LoginForm : Form
         }
 
         var btn = new Button { Text = title, Location = new Point(20, y), Width = 120 };
-        btn.Click += async (s, e) =>
+        btn.Click += async (_, _) =>
         {
             _txtUser.Text = u.Text;
             _txtPass.Text = p.Text;
             if (dn != null) _txtDisplayName.Text = dn.Text;
-            await onSubmit(s, e);
+            await onSubmit(null, EventArgs.Empty);
         };
         tab.Controls.Add(btn);
         return tab;
@@ -104,11 +108,12 @@ public class LoginForm : Form
         tab.Controls.Add(btnCode);
         tab.Controls.Add(btnReset);
 
-        btnCode.Click += async (s, e) => { _txtUser.Text = u.Text; await ForgotClick(s, e); };
-        btnReset.Click += async (s, e) => { _txtUser.Text = u.Text; await ResetClick(s, e); };
+        btnCode.Click += async (_, _) => { _txtUser.Text = u.Text; await ForgotClick(null, EventArgs.Empty); };
+        btnReset.Click += async (_, _) => { _txtUser.Text = u.Text; await ResetClick(null, EventArgs.Empty); };
         return tab;
     }
 
+    /// <summary>Tách host và port từ chuỗi "127.0.0.1:5000".</summary>
     private (string host, int port) ParseServer()
     {
         var parts = _txtServer.Text.Trim().Split(':');
@@ -145,22 +150,7 @@ public class LoginForm : Form
             Payload = new AuthPayload { Username = _txtUser.Text.Trim(), Password = _txtPass.Text },
         }, "LOGIN_OK");
 
-        if (!resp.IsSuccess)
-        {
-            _lblMsg.Text = resp.Error ?? "Đăng nhập thất bại";
-            net.Dispose();
-            return;
-        }
-
-        var auth = PacketIO.ParsePayload<AuthResult>(resp.Payload);
-        if (auth is null || string.IsNullOrEmpty(auth.Token))
-        {
-            _lblMsg.Text = "Lỗi đọc phản hồi server";
-            net.Dispose();
-            return;
-        }
-        net.SetAuth(auth);
-        OpenMain(net, auth.Users);
+        await HandleAuthResponse(net, resp, "Đăng nhập thất bại");
     }
 
     private async Task RegisterClick(object? sender, EventArgs e)
@@ -180,11 +170,17 @@ public class LoginForm : Form
             },
         }, "REGISTER_OK");
 
+        await HandleAuthResponse(net, resp, "Đăng ký thất bại");
+    }
+
+    /// <summary>Xử lý chung sau LOGIN hoặc REGISTER thành công.</summary>
+    private Task HandleAuthResponse(ChatClient net, Packet resp, string failMessage)
+    {
         if (!resp.IsSuccess)
         {
-            _lblMsg.Text = resp.Error ?? "Đăng ký thất bại";
+            _lblMsg.Text = resp.Error ?? failMessage;
             net.Dispose();
-            return;
+            return Task.CompletedTask;
         }
 
         var auth = PacketIO.ParsePayload<AuthResult>(resp.Payload);
@@ -192,10 +188,12 @@ public class LoginForm : Form
         {
             _lblMsg.Text = "Lỗi đọc phản hồi server";
             net.Dispose();
-            return;
+            return Task.CompletedTask;
         }
+
         net.SetAuth(auth);
         OpenMain(net, auth.Users);
+        return Task.CompletedTask;
     }
 
     private async Task ForgotClick(object? sender, EventArgs e)

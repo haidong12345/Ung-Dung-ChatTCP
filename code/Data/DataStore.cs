@@ -5,6 +5,12 @@ using ChatApp.Models;
 
 namespace ChatApp.Data;
 
+/// <summary>
+/// Lưu trữ dữ liệu bằng file JSON (đơn giản, dễ xem khi demo).
+/// - data/users.json     : danh sách tài khoản
+/// - data/messages.json  : lịch sử tin nhắn
+/// - uploads/            : ảnh, video, file đã upload
+/// </summary>
 public static class DataStore
 {
     private static readonly string DataDir = Path.Combine(AppContext.BaseDirectory, "data");
@@ -18,15 +24,17 @@ public static class DataStore
     {
         Directory.CreateDirectory(DataDir);
         Directory.CreateDirectory(UploadDir);
-        EnsureAdmin();
+        EnsureAdmin(); // tạo tài khoản admin mặc định nếu chưa có
     }
 
+    /// <summary>Băm mật khẩu bằng SHA-256 (demo; thực tế nên dùng bcrypt/argon2).</summary>
     public static string HashPassword(string password)
     {
         var bytes = SHA256.HashData(Encoding.UTF8.GetBytes(password));
         return Convert.ToHexString(bytes).ToLowerInvariant();
     }
 
+    /// <summary>Tạo id ngắn 16 ký tự cho user/tin nhắn.</summary>
     public static string NewId() => Guid.NewGuid().ToString("N")[..16];
 
     private static void EnsureAdmin()
@@ -46,22 +54,25 @@ public static class DataStore
         SaveUsers(users);
     }
 
-    public static List<UserAccount> LoadUsers() =>
-        File.Exists(UsersFile)
-            ? JsonSerializer.Deserialize<List<UserAccount>>(File.ReadAllText(UsersFile), JsonOpts) ?? new()
-            : new();
+    public static List<UserAccount> LoadUsers()
+    {
+        if (!File.Exists(UsersFile)) return new();
+        return JsonSerializer.Deserialize<List<UserAccount>>(File.ReadAllText(UsersFile), JsonOpts) ?? new();
+    }
 
     public static void SaveUsers(List<UserAccount> users) =>
         File.WriteAllText(UsersFile, JsonSerializer.Serialize(users, JsonOpts));
 
-    public static List<ChatMessage> LoadMessages() =>
-        File.Exists(MessagesFile)
-            ? JsonSerializer.Deserialize<List<ChatMessage>>(File.ReadAllText(MessagesFile), JsonOpts) ?? new()
-            : new();
+    public static List<ChatMessage> LoadMessages()
+    {
+        if (!File.Exists(MessagesFile)) return new();
+        return JsonSerializer.Deserialize<List<ChatMessage>>(File.ReadAllText(MessagesFile), JsonOpts) ?? new();
+    }
 
     public static void SaveMessages(List<ChatMessage> messages) =>
         File.WriteAllText(MessagesFile, JsonSerializer.Serialize(messages, JsonOpts));
 
+    /// <summary>Lưu file upload, trả về tên file mới (tránh trùng tên).</summary>
     public static string SaveUpload(string fileName, byte[] data)
     {
         var ext = Path.GetExtension(fileName);

@@ -5,22 +5,26 @@ using ChatApp.Data;
 
 namespace ChatApp.Server;
 
+/// <summary>
+/// Server TCP trung tâm.
+/// - Lắng nghe cổng 5000, mỗi client kết nối tạo 1 ClientSession
+/// - Quản lý ai đang online và chuyển tin nhắn realtime giữa các user
+/// </summary>
 public static class ChatServer
 {
     private const int Port = 5000;
     private static TcpListener? _listener;
     private static bool _running;
 
-    // token -> userId
-    internal static readonly Dictionary<string, string> Sessions = new();
-    // userId -> ClientSession
-    internal static readonly Dictionary<string, ClientSession> Online = new();
+    // Bảng tra cứu sau khi đăng nhập:
+    internal static readonly Dictionary<string, string> Sessions = new(); // token -> userId
+    internal static readonly Dictionary<string, ClientSession> Online = new(); // userId -> session đang kết nối
     private static readonly object Lock = new();
 
     public static void Run()
     {
         if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
-            AllocConsole();
+            AllocConsole(); // mở cửa sổ console trên Windows
 
         _listener = new TcpListener(IPAddress.Any, Port);
         _listener.Start();
@@ -28,7 +32,7 @@ public static class ChatServer
 
         Console.WriteLine($"=== Chat Server TCP - cong {Port} ===");
         Console.WriteLine("Admin mac dinh: admin / admin123");
-        Console.WriteLine("Nhan Enter đe dung server...");
+        Console.WriteLine("Nhan Enter de dung server...");
 
         _ = Task.Run(AcceptLoop);
         Console.ReadLine();
@@ -36,6 +40,7 @@ public static class ChatServer
         _listener.Stop();
     }
 
+    /// <summary>Vòng lặp chờ client mới kết nối.</summary>
     private static async Task AcceptLoop()
     {
         while (_running && _listener != null)
@@ -44,7 +49,7 @@ public static class ChatServer
             {
                 var client = await _listener.AcceptTcpClientAsync();
                 var session = new ClientSession(client);
-                _ = session.RunAsync();
+                _ = session.RunAsync(); // xử lý client trên luồng riêng
             }
             catch (Exception ex) when (_running)
             {
@@ -57,6 +62,7 @@ public static class ChatServer
     {
         lock (Lock)
         {
+            // Nếu user đăng nhập lại từ máy khác, đóng session cũ
             if (Online.TryGetValue(userId, out var old))
                 old.Dispose();
             Online[userId] = session;
@@ -83,6 +89,7 @@ public static class ChatServer
         Broadcast(packet, exceptUserId: null);
     }
 
+    /// <summary>Gửi gói tin tới đúng 1 user (nếu user đó đang online).</summary>
     internal static void SendToUser(string userId, Models.Packet packet)
     {
         lock (Lock)
@@ -92,10 +99,11 @@ public static class ChatServer
         }
     }
 
+    /// <summary>Gửi gói tin tới tất cả user online (trừ exceptUserId nếu có).</summary>
     internal static void Broadcast(Models.Packet packet, string? exceptUserId)
     {
         List<ClientSession> copy;
-        lock (Lock) copy = Online.Values.ToList();
+        lock (Lock) copy = Online.Values.ToList(); // copy ra ngoài lock để tránh treo lâu
 
         foreach (var s in copy)
         {

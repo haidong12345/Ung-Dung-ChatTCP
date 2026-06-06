@@ -1,5 +1,6 @@
 namespace ChatApp.Models;
 
+/// <summary>Thông tin user lưu trong file users.json (có mật khẩu đã băm).</summary>
 public class UserAccount
 {
     public string Id { get; set; } = "";
@@ -7,12 +8,13 @@ public class UserAccount
     public string PasswordHash { get; set; } = "";
     public string DisplayName { get; set; } = "";
     public string AvatarPath { get; set; } = "";
-    public string Role { get; set; } = "user";
-    public string Status { get; set; } = "active";
+    public string Role { get; set; } = "user";   // user | admin
+    public string Status { get; set; } = "active"; // active | locked
     public string? ResetCode { get; set; }
     public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
 }
 
+/// <summary>Thông tin user gửi cho client (KHÔNG gửi mật khẩu).</summary>
 public class UserInfo
 {
     public string Id { get; set; } = "";

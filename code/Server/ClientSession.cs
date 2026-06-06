@@ -5,7 +5,10 @@ using ChatApp.Network;
 
 namespace ChatApp.Server;
 
-/// <summary>Xử lý 1 kết nối TCP từ client</summary>
+/// <summary>
+/// Xử lý 1 kết nối TCP từ client.
+/// Luồng chính: đọc Packet -> HandleAsync -> xử lý theo Type -> ReplyAsync (trả LOGIN_OK, ...)
+/// </summary>
 public class ClientSession : IDisposable
 {
     private readonly TcpClient _tcp;
@@ -52,6 +55,7 @@ public class ClientSession : IDisposable
         catch { /* client đã đóng */ }
     }
 
+    /// <summary>Trả lời client: LOGIN -> LOGIN_OK, SEND_MESSAGE -> SEND_MESSAGE_OK, ...</summary>
     private async Task ReplyAsync(Packet req, object? payload, bool ok = true, string? error = null)
     {
         await SendAsync(new Packet
@@ -63,6 +67,7 @@ public class ClientSession : IDisposable
         });
     }
 
+    /// <summary>Phân loại lệnh theo tên Type và gọi hàm xử lý tương ứng.</summary>
     private async Task HandleAsync(Packet packet)
     {
         var cmd = (packet.Type ?? "").Trim().ToUpperInvariant();
@@ -93,18 +98,7 @@ public class ClientSession : IDisposable
         }
     }
 
-    private UserAccount? GetUserFromToken(Packet p)
-    {
-        var auth = PacketIO.ParsePayload<Dictionary<string, string>>(p.Payload);
-        // token gửi kèm mọi yêu cầu sau login
-        string? token = auth?.GetValueOrDefault("token");
-        if (string.IsNullOrEmpty(token) && p.Payload is System.Text.Json.JsonElement el
-            && el.TryGetProperty("token", out var t))
-            token = t.GetString();
-
-        if (token == null || !ChatServer.Sessions.TryGetValue(token, out var uid)) return null;
-        return DataStore.LoadUsers().FirstOrDefault(u => u.Id == uid);
-    }
+    // --- Xác thực: đọc token từ Payload ---
 
     private string? GetToken(Packet p)
     {
@@ -113,6 +107,8 @@ public class ClientSession : IDisposable
         var dict = PacketIO.ParsePayload<Dictionary<string, string>>(p.Payload);
         return dict?.GetValueOrDefault("token");
     }
+
+    // --- Đăng ký / Đăng nhập ---
 
     private async Task HandleRegister(Packet p)
     {
@@ -169,6 +165,7 @@ public class ClientSession : IDisposable
         await LoginSuccess(p, user);
     }
 
+    /// <summary>Sau login thành công: tạo token, lưu session, trả danh sách user khác.</summary>
     private async Task LoginSuccess(Packet p, UserAccount user)
     {
         Token = Guid.NewGuid().ToString("N");
@@ -236,7 +233,7 @@ public class ClientSession : IDisposable
         var code = Random.Shared.Next(100000, 999999).ToString();
         users[idx].ResetCode = code;
         DataStore.SaveUsers(users);
-        // Demo: trả mã về client (thực tế gửi email) (thực tế gửi email)
+        // Demo: trả mã về client (thực tế gửi email)
         await ReplyAsync(p, new { resetCode = code, message = "Mã đặt lại (demo):" });
     }
 
@@ -269,6 +266,8 @@ public class ClientSession : IDisposable
         await ReplyAsync(p, users);
     }
 
+    // --- Chat: lịch sử, gửi tin, thu hồi, typing, đã xem ---
+
     private async Task HandleGetHistory(Packet p)
     {
         var user = RequireUser(p);
@@ -277,6 +276,7 @@ public class ClientSession : IDisposable
         var hist = PacketIO.ParsePayload<HistoryPayload>(p.Payload);
         var otherId = hist?.OtherUserId;
 
+        // Lọc tin nhắn giữa user hiện tại và người được chọn
         var messages = DataStore.LoadMessages()
             .Where(m =>
                 (m.FromUserId == user.Id && m.ToUserId == otherId) ||
@@ -319,6 +319,7 @@ public class ClientSession : IDisposable
                 msg.ReplyPreview = BuildReplyPreview(quoted);
         }
 
+        // Lưu tin vào file, đồng thời đẩy realtime cho người nhận
         var all = DataStore.LoadMessages();
         all.Add(msg);
         DataStore.SaveMessages(all);
@@ -404,13 +405,21 @@ public class ClientSession : IDisposable
 
         var bytes = Convert.FromBase64String(data.Base64Data);
         var saved = DataStore.SaveUpload(data.FileName, bytes);
-        var ext = Path.GetExtension(data.FileName).ToLowerInvariant();
-        var type = ext is ".jpg" or ".jpeg" or ".png" or ".gif" or ".webp" ? "image"
-            : ext is ".mp4" or ".webm" or ".avi" or ".mov" or ".mkv" ? "video"
-            : "file";
+        var type = DetectFileType(data.FileName);
 
         await ReplyAsync(p, new UploadResult { FilePath = saved, Type = type });
     }
+
+    /// <summary>Phân loại file upload: image / video / file (theo đuôi file).</summary>
+    private static string DetectFileType(string fileName)
+    {
+        var ext = Path.GetExtension(fileName).ToLowerInvariant();
+        if (ext is ".jpg" or ".jpeg" or ".png" or ".gif" or ".webp") return "image";
+        if (ext is ".mp4" or ".webm" or ".avi" or ".mov" or ".mkv") return "video";
+        return "file";
+    }
+
+    // --- Hồ sơ cá nhân ---
 
     private async Task HandleProfile(Packet p)
     {
@@ -574,6 +583,7 @@ public class ClientSession : IDisposable
         await ReplyAsync(p, UserInfo.From(users[idx]));
     }
 
+    /// <summary>Kiểm tra token hợp lệ trước khi xử lý lệnh cần đăng nhập.</summary>
     private UserAccount? RequireUser(Packet p)
     {
         var token = GetToken(p);

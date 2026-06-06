@@ -4,6 +4,7 @@ using ChatApp.Network;
 
 namespace ChatApp.UI;
 
+/// <summary>Màn hình admin: xem danh sách user và khóa/mở khóa tài khoản.</summary>
 public class AdminForm : Form
 {
     private readonly ChatClient _client;

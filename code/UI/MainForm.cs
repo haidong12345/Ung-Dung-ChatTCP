@@ -5,7 +5,14 @@ using ChatApp.Network;
 
 namespace ChatApp.UI;
 
-/// <summary>Màn hình chat chính: danh sách user, tin nhắn, realtime</summary>
+/// <summary>
+/// Màn hình chat chính.
+/// Bố cục: trái = danh sách user | phải = tin nhắn + ô nhập
+/// Luồng chính:
+/// 1. Chọn user -> LoadChatAsync (GET_HISTORY)
+/// 2. Gõ tin -> SendTextAsync (SEND_MESSAGE)
+/// 3. Server đẩy NEW_MESSAGE -> OnServerPacket -> AddMessage
+/// </summary>
 public class MainForm : Form
 {
     private readonly ChatClient _client;
@@ -25,10 +32,11 @@ public class MainForm : Form
     private static readonly string[] ReactionEmojis = { "👍", "❤️", "😂", "😮", "😢", "🔥", "👏", "🎉" };
     private static readonly string[] InputEmojis = { "😀", "😂", "😍", "👍", "🙏", "❤️", "🔥", "🎉", "😢", "😡", "✨", "💯" };
 
+    // Dữ liệu chat đang mở
     private List<UserInfo> _users = new();
-    private UserInfo? _chatWith;
-    private readonly Dictionary<string, ChatMessage> _messagesById = new();
-    private readonly List<string> _messageOrder = new();
+    private UserInfo? _chatWith; // người đang chat cùng
+    private readonly Dictionary<string, ChatMessage> _messagesById = new(); // tra cứu tin theo id
+    private readonly List<string> _messageOrder = new(); // thứ tự hiển thị
     private System.Windows.Forms.Timer? _typingTimer;
 
     public MainForm(ChatClient client, List<UserInfo>? initialUsers = null)
@@ -179,6 +187,10 @@ public class MainForm : Form
         Controls.Add(menu);
     }
 
+    /// <summary>
+    /// Server gửi gói tin bất kỳ lúc nào (tin mới, typing, ...).
+    /// OnPacket chạy trên luồng nền -> phải Invoke về luồng UI.
+    /// </summary>
     private void OnServerPacket(Packet p)
     {
         if (InvokeRequired) { BeginInvoke(() => OnServerPacket(p)); return; }
@@ -259,6 +271,7 @@ public class MainForm : Form
         ApplyUserList(PacketIO.ParseUserList(resp.Payload));
     }
 
+    /// <summary>Tải lịch sử chat với user đang chọn (lệnh GET_HISTORY).</summary>
     private async Task LoadChatAsync()
     {
         int idx = _lstUsers.SelectedIndex;
@@ -299,13 +312,11 @@ public class MainForm : Form
         await MarkSeenAsync();
     }
 
+    /// <summary>Thêm 1 tin vào bộ nhớ và vẽ lên màn hình (nếu thuộc cuộc chat hiện tại).</summary>
     private void AddMessage(ChatMessage m, bool isNew)
     {
         _messagesById[m.Id] = m;
-        if (_chatWith != null &&
-            !((m.FromUserId == _client.CurrentUser!.Id && m.ToUserId == _chatWith.Id) ||
-              (m.FromUserId == _chatWith.Id && m.ToUserId == _client.CurrentUser!.Id)))
-            return;
+        if (!IsMessageInCurrentChat(m)) return;
 
         if (!_messageOrder.Contains(m.Id))
             _messageOrder.Add(m.Id);
@@ -320,6 +331,15 @@ public class MainForm : Form
             }
             _ = MarkSeenAsync();
         }
+    }
+
+    /// <summary>Kiểm tra tin có thuộc cuộc chat 1-1 đang mở không.</summary>
+    private bool IsMessageInCurrentChat(ChatMessage m)
+    {
+        if (_chatWith is null) return false;
+        var me = _client.CurrentUser!.Id;
+        return (m.FromUserId == me && m.ToUserId == _chatWith.Id)
+            || (m.FromUserId == _chatWith.Id && m.ToUserId == me);
     }
 
     private void RefreshMessageListUI()
@@ -538,6 +558,7 @@ public class MainForm : Form
         await UploadAndSendAsync(dlg.FileName);
     }
 
+    /// <summary>Bước 1: UPLOAD file lên server. Bước 2: SEND_MESSAGE với đường dẫn file.</summary>
     private async Task UploadAndSendAsync(string path)
     {
         var bytes = await File.ReadAllBytesAsync(path);

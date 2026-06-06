@@ -6,11 +6,17 @@ using System.Text.Json;
 
 namespace ChatApp.UI;
 
-/// <summary>Tải và cache avatar từ server</summary>
+/// <summary>
+/// Hỗ trợ hiển thị avatar hình tròn.
+/// - CreatePlaceholder: tạo ảnh tạm có chữ cái đầu tên
+/// - LoadIntoAsync: tải ảnh từ server qua lệnh GET_FILE
+/// </summary>
 public static class AvatarHelper
 {
+    // Cache ảnh đã tải để không tải lại nhiều lần
     private static readonly Dictionary<string, Image> Cache = new();
 
+    /// <summary>Tạo avatar mặc định (nền xanh + chữ cái đầu).</summary>
     public static Image CreatePlaceholder(int size, string letter)
     {
         var bmp = new Bitmap(size, size);
@@ -24,6 +30,7 @@ public static class AvatarHelper
         return MakeCircular(bmp);
     }
 
+    /// <summary>Cắt ảnh thành hình tròn bằng GraphicsPath.</summary>
     public static Image MakeCircular(Image source)
     {
         var size = Math.Min(source.Width, source.Height);
@@ -37,6 +44,7 @@ public static class AvatarHelper
         return bmp;
     }
 
+    /// <summary>Thiết lập PictureBox hiển thị hình tròn.</summary>
     public static void ApplyCircular(PictureBox box, int size)
     {
         box.Size = new Size(size, size);
@@ -53,6 +61,7 @@ public static class AvatarHelper
         box.Region = new Region(path);
     }
 
+    /// <summary>Tải avatar từ server và gán vào PictureBox.</summary>
     public static async Task LoadIntoAsync(ChatClient client, PictureBox box, string? avatarPath, string fallbackLetter)
     {
         box.Image?.Dispose();
@@ -88,7 +97,7 @@ public static class AvatarHelper
         }
         catch
         {
-            // giữ placeholder
+            // Nếu lỗi thì giữ avatar placeholder
         }
     }
 
