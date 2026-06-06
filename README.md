@@ -40,10 +40,13 @@ Mở **2 cửa sổ client** để chat thử (đăng ký 2 user khác nhau, ví
 ### User
 - Đăng ký, đăng nhập, đăng xuất, đổi mật khẩu, quên mật khẩu (mã demo trả về màn hình)
 - Chat 1-1, tin nhắn realtime qua TCP
-- Gửi text, emoji, ảnh, file
+- Gửi text, emoji, ảnh, file, video,quote, avata, reply
+- **Trích dẫn (quote)** tin nhắn khi reply
+- **Emoji phản hồi** (👍 ❤️ 😂 …) trên từng tin
+- **Avatar** hiển thị trên giao diện (cập nhật qua menu Hồ sơ)
 - Thu hồi tin nhắn
 - Xem lịch sử chat
-- Preview ảnh (double-click tin ảnh)
+- Preview ảnh
 - Online/offline, đang nhập, đã xem (seen)
 - Thông báo tin mới (hộp thoại khi cửa sổ không focus)
 - Cập nhật avatar, tên hiển thị, xem trạng thái tài khoản

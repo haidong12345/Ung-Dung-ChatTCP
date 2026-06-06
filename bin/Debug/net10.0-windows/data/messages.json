@@ -12,22 +12,28 @@
       "94a55c8d00d4450b",
       "7a0d4be493fd4b14"
     ],
-    "CreatedAt": "2026-06-01T05:12:59.3993746Z"
+    "CreatedAt": "2026-06-01T05:12:59.3993746Z",
+    "ReplyToId": "",
+    "ReplyPreview": "",
+    "Reactions": []
   },
   {
     "Id": "8666c60303be40ba",
     "FromUserId": "7a0d4be493fd4b14",
     "ToUserId": "94a55c8d00d4450b",
     "Type": "text",
-    "Content": "ch\u00E0o b\u1EA1n",
+    "Content": "",
     "FilePath": "",
     "FileName": "",
-    "Recalled": false,
+    "Recalled": true,
     "SeenBy": [
       "7a0d4be493fd4b14",
       "94a55c8d00d4450b"
     ],
-    "CreatedAt": "2026-06-01T05:13:45.8877709Z"
+    "CreatedAt": "2026-06-01T05:13:45.8877709Z",
+    "ReplyToId": "",
+    "ReplyPreview": "",
+    "Reactions": []
   },
   {
     "Id": "d15376ec8f0d4511",
@@ -42,7 +48,10 @@
       "94a55c8d00d4450b",
       "7a0d4be493fd4b14"
     ],
-    "CreatedAt": "2026-06-01T05:23:54.8418954Z"
+    "CreatedAt": "2026-06-01T05:23:54.8418954Z",
+    "ReplyToId": "",
+    "ReplyPreview": "",
+    "Reactions": []
   },
   {
     "Id": "0b7874d095864317",
@@ -57,7 +66,10 @@
       "94a55c8d00d4450b",
       "7a0d4be493fd4b14"
     ],
-    "CreatedAt": "2026-06-01T05:24:19.5800871Z"
+    "CreatedAt": "2026-06-01T05:24:19.5800871Z",
+    "ReplyToId": "",
+    "ReplyPreview": "",
+    "Reactions": []
   },
   {
     "Id": "0d3fcd266e354c08",
@@ -72,7 +84,10 @@
       "94a55c8d00d4450b",
       "7a0d4be493fd4b14"
     ],
-    "CreatedAt": "2026-06-01T05:24:32.14227Z"
+    "CreatedAt": "2026-06-01T05:24:32.14227Z",
+    "ReplyToId": "",
+    "ReplyPreview": "",
+    "Reactions": []
   },
   {
     "Id": "a889f3e2f6614c6e",
@@ -87,7 +102,10 @@
       "7a0d4be493fd4b14",
       "94a55c8d00d4450b"
     ],
-    "CreatedAt": "2026-06-01T05:25:13.3497928Z"
+    "CreatedAt": "2026-06-01T05:25:13.3497928Z",
+    "ReplyToId": "",
+    "ReplyPreview": "",
+    "Reactions": []
   },
   {
     "Id": "79c29025611f4a42",
@@ -102,7 +120,10 @@
       "94a55c8d00d4450b",
       "7a0d4be493fd4b14"
     ],
-    "CreatedAt": "2026-06-01T05:59:34.9911898Z"
+    "CreatedAt": "2026-06-01T05:59:34.9911898Z",
+    "ReplyToId": "",
+    "ReplyPreview": "",
+    "Reactions": []
   },
   {
     "Id": "b740f5505fb94dec",
@@ -117,7 +138,10 @@
       "94a55c8d00d4450b",
       "7a0d4be493fd4b14"
     ],
-    "CreatedAt": "2026-06-01T05:59:36.4479481Z"
+    "CreatedAt": "2026-06-01T05:59:36.4479481Z",
+    "ReplyToId": "",
+    "ReplyPreview": "",
+    "Reactions": []
   },
   {
     "Id": "336d67c4fda1449e",
@@ -132,7 +156,10 @@
       "94a55c8d00d4450b",
       "7a0d4be493fd4b14"
     ],
-    "CreatedAt": "2026-06-01T05:59:37.2015998Z"
+    "CreatedAt": "2026-06-01T05:59:37.2015998Z",
+    "ReplyToId": "",
+    "ReplyPreview": "",
+    "Reactions": []
   },
   {
     "Id": "b709c839ffee4c4a",
@@ -147,7 +174,10 @@
       "94a55c8d00d4450b",
       "7a0d4be493fd4b14"
     ],
-    "CreatedAt": "2026-06-01T05:59:38.0236936Z"
+    "CreatedAt": "2026-06-01T05:59:38.0236936Z",
+    "ReplyToId": "",
+    "ReplyPreview": "",
+    "Reactions": []
   },
   {
     "Id": "b82f7b0450fe43af",
@@ -162,6 +192,153 @@
       "7a0d4be493fd4b14",
       "94a55c8d00d4450b"
     ],
-    "CreatedAt": "2026-06-01T06:01:11.2953917Z"
+    "CreatedAt": "2026-06-01T06:01:11.2953917Z",
+    "ReplyToId": "",
+    "ReplyPreview": "",
+    "Reactions": []
+  },
+  {
+    "Id": "7730a9e615224f73",
+    "FromUserId": "7a0d4be493fd4b14",
+    "ToUserId": "94a55c8d00d4450b",
+    "Type": "text",
+    "Content": "",
+    "FilePath": "",
+    "FileName": "",
+    "Recalled": true,
+    "SeenBy": [
+      "7a0d4be493fd4b14",
+      "94a55c8d00d4450b"
+    ],
+    "CreatedAt": "2026-06-02T07:07:59.9591931Z",
+    "ReplyToId": "",
+    "ReplyPreview": "",
+    "Reactions": []
+  },
+  {
+    "Id": "db435d573a2f4eac",
+    "FromUserId": "7a0d4be493fd4b14",
+    "ToUserId": "94a55c8d00d4450b",
+    "Type": "text",
+    "Content": "\uD83D\uDE00",
+    "FilePath": "",
+    "FileName": "",
+    "Recalled": false,
+    "SeenBy": [
+      "7a0d4be493fd4b14",
+      "94a55c8d00d4450b"
+    ],
+    "CreatedAt": "2026-06-02T07:08:09.2328096Z",
+    "ReplyToId": "",
+    "ReplyPreview": "",
+    "Reactions": []
+  },
+  {
+    "Id": "d598762c4c594ace",
+    "FromUserId": "7a0d4be493fd4b14",
+    "ToUserId": "94a55c8d00d4450b",
+    "Type": "text",
+    "Content": "",
+    "FilePath": "",
+    "FileName": "",
+    "Recalled": true,
+    "SeenBy": [
+      "7a0d4be493fd4b14",
+      "94a55c8d00d4450b"
+    ],
+    "CreatedAt": "2026-06-02T07:08:20.9653516Z",
+    "ReplyToId": "",
+    "ReplyPreview": "",
+    "Reactions": []
+  },
+  {
+    "Id": "22db1cb0c1714d44",
+    "FromUserId": "94a55c8d00d4450b",
+    "ToUserId": "7a0d4be493fd4b14",
+    "Type": "text",
+    "Content": "\uD83D\uDE0D",
+    "FilePath": "",
+    "FileName": "",
+    "Recalled": false,
+    "SeenBy": [
+      "94a55c8d00d4450b",
+      "7a0d4be493fd4b14"
+    ],
+    "CreatedAt": "2026-06-06T02:26:22.6851279Z",
+    "ReplyToId": "",
+    "ReplyPreview": "",
+    "Reactions": []
+  },
+  {
+    "Id": "9bba12db6f7e4376",
+    "FromUserId": "7a0d4be493fd4b14",
+    "ToUserId": "94a55c8d00d4450b",
+    "Type": "text",
+    "Content": "",
+    "FilePath": "",
+    "FileName": "",
+    "Recalled": true,
+    "SeenBy": [
+      "7a0d4be493fd4b14",
+      "94a55c8d00d4450b"
+    ],
+    "CreatedAt": "2026-06-06T02:26:36.1849886Z",
+    "ReplyToId": "7730a9e615224f73",
+    "ReplyPreview": "ch\u00E0o c\u1EADu",
+    "Reactions": []
+  },
+  {
+    "Id": "bdf110ab01604a5e",
+    "FromUserId": "94a55c8d00d4450b",
+    "ToUserId": "7a0d4be493fd4b14",
+    "Type": "image",
+    "Content": "",
+    "FilePath": "639163096069562843_a4fb38ad027e4601.jpg",
+    "FileName": "z7249628226783_021d82a5954e4de4788339d924e9bc50.jpg",
+    "Recalled": true,
+    "SeenBy": [
+      "94a55c8d00d4450b",
+      "7a0d4be493fd4b14"
+    ],
+    "CreatedAt": "2026-06-06T02:26:46.9629416Z",
+    "ReplyToId": "",
+    "ReplyPreview": "",
+    "Reactions": []
+  },
+  {
+    "Id": "18decc2460ba4d29",
+    "FromUserId": "7a0d4be493fd4b14",
+    "ToUserId": "94a55c8d00d4450b",
+    "Type": "video",
+    "Content": "",
+    "FilePath": "639163114610698634_4804120172a24661.mp4",
+    "FileName": "7906106864241.mp4",
+    "Recalled": true,
+    "SeenBy": [
+      "7a0d4be493fd4b14",
+      "94a55c8d00d4450b"
+    ],
+    "CreatedAt": "2026-06-06T02:57:41.0872166Z",
+    "ReplyToId": "",
+    "ReplyPreview": "",
+    "Reactions": []
+  },
+  {
+    "Id": "e1cec976ed57482b",
+    "FromUserId": "7a0d4be493fd4b14",
+    "ToUserId": "94a55c8d00d4450b",
+    "Type": "image",
+    "Content": "",
+    "FilePath": "639163114755539424_25cd68fe0eb9461f.jpg",
+    "FileName": "z7249628226783_021d82a5954e4de4788339d924e9bc50.jpg",
+    "Recalled": true,
+    "SeenBy": [
+      "7a0d4be493fd4b14",
+      "94a55c8d00d4450b"
+    ],
+    "CreatedAt": "2026-06-06T02:57:55.5559928Z",
+    "ReplyToId": "",
+    "ReplyPreview": "",
+    "Reactions": []
   }
 ]

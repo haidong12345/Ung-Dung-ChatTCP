@@ -27,8 +27,8 @@ public static class ChatServer
         _running = true;
 
         Console.WriteLine($"=== Chat Server TCP - cong {Port} ===");
-        Console.WriteLine("Admin mặc định: admin / admin123");
-        Console.WriteLine("Nhan Enter để dừng server...");
+        Console.WriteLine("Admin mac dinh: admin / admin123");
+        Console.WriteLine("Nhan Enter đe dung server...");
 
         _ = Task.Run(AcceptLoop);
         Console.ReadLine();

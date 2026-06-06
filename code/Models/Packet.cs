@@ -58,6 +58,15 @@ public class SendMessagePayload
     public string Content { get; set; } = "";
     public string FilePath { get; set; } = "";
     public string FileName { get; set; } = "";
+    public string ReplyToId { get; set; } = "";
+}
+
+public class EmojiReplyPayload
+{
+    public string Token { get; set; } = "";
+    public string MessageId { get; set; } = "";
+    public string ToUserId { get; set; } = "";
+    public string Emoji { get; set; } = "";
 }
 
 public class RecallPayload

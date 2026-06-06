@@ -85,6 +85,7 @@ public class ClientSession : IDisposable
             case "ADMIN_USERS": await HandleAdminUsers(packet); break;
             case "ADMIN_LOCK": await HandleAdminLock(packet); break;
             case "GET_FILE": await HandleGetFile(packet); break;
+            case "EMOJI_REPLY": await HandleEmojiReply(packet); break;
             default:
                 Console.WriteLine($"Lệnh không hợp lệ: '{packet.Type}'");
                 await SendAsync(new Packet { Type = "ERROR", Ok = false, Error = $"Lenh khong hop le: {packet.Type}" });
@@ -307,7 +308,16 @@ public class ClientSession : IDisposable
             FilePath = data.FilePath,
             FileName = data.FileName,
             SeenBy = new List<string> { user.Id },
+            ReplyToId = data.ReplyToId ?? "",
         };
+
+        if (!string.IsNullOrEmpty(msg.ReplyToId))
+        {
+            var allForQuote = DataStore.LoadMessages();
+            var quoted = allForQuote.FirstOrDefault(m => m.Id == msg.ReplyToId);
+            if (quoted != null)
+                msg.ReplyPreview = BuildReplyPreview(quoted);
+        }
 
         var all = DataStore.LoadMessages();
         all.Add(msg);
@@ -395,7 +405,9 @@ public class ClientSession : IDisposable
         var bytes = Convert.FromBase64String(data.Base64Data);
         var saved = DataStore.SaveUpload(data.FileName, bytes);
         var ext = Path.GetExtension(data.FileName).ToLowerInvariant();
-        var type = ext is ".jpg" or ".jpeg" or ".png" or ".gif" or ".webp" ? "image" : "file";
+        var type = ext is ".jpg" or ".jpeg" or ".png" or ".gif" or ".webp" ? "image"
+            : ext is ".mp4" or ".webm" or ".avi" or ".mov" or ".mkv" ? "video"
+            : "file";
 
         await ReplyAsync(p, new UploadResult { FilePath = saved, Type = type });
     }
@@ -420,7 +432,67 @@ public class ClientSession : IDisposable
         }
 
         DataStore.SaveUsers(users);
-        await ReplyAsync(p, UserInfo.From(users[idx], ChatServer.Online.ContainsKey(users[idx].Id)));
+
+        var updated = UserInfo.From(users[idx], ChatServer.Online.ContainsKey(users[idx].Id));
+        ChatServer.Broadcast(new Packet { Type = "PROFILE_UPDATED", Payload = updated }, exceptUserId: null);
+        await ReplyAsync(p, updated);
+    }
+
+    private static string BuildReplyPreview(ChatMessage m)
+    {
+        if (m.Recalled) return "[Tin đã thu hồi]";
+        return m.Type switch
+        {
+            "image" => "[Ảnh] " + m.FileName,
+            "video" => "[Video] " + m.FileName,
+            "file" => "[File] " + m.FileName,
+            _ => m.Content.Length > 80 ? m.Content[..80] + "…" : m.Content,
+        };
+    }
+
+    private async Task HandleEmojiReply(Packet p)
+    {
+        var user = RequireUser(p);
+        if (user is null) return;
+
+        var data = PacketIO.ParsePayload<EmojiReplyPayload>(p.Payload);
+        if (data is null || string.IsNullOrEmpty(data.MessageId) || string.IsNullOrEmpty(data.Emoji))
+        {
+            await ReplyAsync(p, null, false, "Thiếu thông tin");
+            return;
+        }
+
+        var all = DataStore.LoadMessages();
+        var idx = all.FindIndex(m => m.Id == data.MessageId);
+        if (idx < 0)
+        {
+            await ReplyAsync(p, null, false, "Không tìm thấy tin");
+            return;
+        }
+
+        var msg = all[idx];
+        if (msg.FromUserId != user.Id && msg.ToUserId != user.Id)
+        {
+            await ReplyAsync(p, null, false, "Không có quyền");
+            return;
+        }
+
+        var otherId = msg.FromUserId == user.Id ? msg.ToUserId : msg.FromUserId;
+        var existing = msg.Reactions.FirstOrDefault(r => r.UserId == user.Id && r.Emoji == data.Emoji);
+        if (existing != null)
+            msg.Reactions.Remove(existing);
+        else
+            msg.Reactions.Add(new MessageReaction { UserId = user.Id, Emoji = data.Emoji });
+
+        DataStore.SaveMessages(all);
+
+        var push = new Packet
+        {
+            Type = "MESSAGE_REACTION",
+            Payload = new { messageId = data.MessageId, reactions = msg.Reactions },
+        };
+        ChatServer.SendToUser(otherId, push);
+        await ReplyAsync(p, new { messageId = data.MessageId, reactions = msg.Reactions });
     }
 
     private async Task HandleAdminUsers(Packet p)
