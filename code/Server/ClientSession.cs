@@ -84,7 +84,7 @@ public class ClientSession : IDisposable
             case "SEND_MESSAGE": await HandleSendMessage(packet); break;
             case "RECALL_MESSAGE": await HandleRecall(packet); break;
             case "TYPING": await HandleTyping(packet); break;
-            case "SEEN": await HandleSeen(packet); break;
+case "SEEN": await HandleSeen(packet); break;
             case "UPLOAD": await HandleUpload(packet); break;
             case "UPDATE_PROFILE": await HandleProfile(packet); break;
             case "ADMIN_USERS": await HandleAdminUsers(packet); break;
@@ -167,7 +167,7 @@ public class ClientSession : IDisposable
 
     /// <summary>Sau login thành công: tạo token, lưu session, trả danh sách user khác.</summary>
     private async Task LoginSuccess(Packet p, UserAccount user)
-    {
+{
         Token = Guid.NewGuid().ToString("N");
         UserId = user.Id;
         ChatServer.Sessions[Token] = user.Id;
@@ -252,8 +252,7 @@ public class ClientSession : IDisposable
         DataStore.SaveUsers(users);
         await ReplyAsync(p, new { ok = true });
     }
-
-    private async Task HandleGetUsers(Packet p)
+private async Task HandleGetUsers(Packet p)
     {
         var user = RequireUser(p);
         if (user is null) return;
@@ -342,7 +341,7 @@ public class ClientSession : IDisposable
         if (idx < 0) return;
 
         all[idx].Recalled = true;
-        all[idx].Content = "";
+all[idx].Content = "";
         DataStore.SaveMessages(all);
 
         var push = new Packet { Type = "MESSAGE_RECALLED", Payload = new { data.MessageId, from = user.Id } };
@@ -431,7 +430,7 @@ public class ClientSession : IDisposable
         var idx = users.FindIndex(u => u.Id == user.Id);
 
         if (!string.IsNullOrEmpty(data?.DisplayName))
-            users[idx].DisplayName = data.DisplayName;
+users[idx].DisplayName = data.DisplayName;
 
         if (!string.IsNullOrEmpty(data?.AvatarBase64))
         {
@@ -516,7 +515,7 @@ public class ClientSession : IDisposable
 
         var list = DataStore.LoadUsers()
             .Select(u => UserInfo.From(u, ChatServer.Online.ContainsKey(u.Id)))
-            .ToList();
+.ToList();
         await ReplyAsync(p, list);
     }
 
