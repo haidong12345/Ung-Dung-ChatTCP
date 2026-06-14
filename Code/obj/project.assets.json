@@ -13,11 +13,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\LapTrinhMang\\Ung-Dung-ChatTCP\\MyApp.csproj",
+      "projectUniqueName": "D:\\LapTrinhMang\\Ung-Dung-ChatTCP\\Code\\MyApp.csproj",
       "projectName": "MyApp",
-      "projectPath": "D:\\LapTrinhMang\\Ung-Dung-ChatTCP\\MyApp.csproj",
+      "projectPath": "D:\\LapTrinhMang\\Ung-Dung-ChatTCP\\Code\\MyApp.csproj",
       "packagesPath": "C:\\Users\\USER\\.nuget\\packages\\",
-      "outputPath": "D:\\LapTrinhMang\\Ung-Dung-ChatTCP\\obj\\",
+      "outputPath": "D:\\LapTrinhMang\\Ung-Dung-ChatTCP\\Code\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\USER\\AppData\\Roaming\\NuGet\\NuGet.Config"
