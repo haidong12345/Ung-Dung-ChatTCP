@@ -1,0 +1,24 @@
+[
+  {
+    "Id": "9789d691f61a4341",
+    "Username": "admin",
+    "PasswordHash": "240be518fabd2724ddb6f04eeb1da5967448d7e831c08c8fa822809f74c720a9",
+    "DisplayName": "Quan tri vien",
+    "AvatarPath": "639169247885466315_23c0c448dfc24f01.jpg",
+    "Role": "admin",
+    "Status": "active",
+    "ResetCode": null,
+    "CreatedAt": "2026-06-13T05:18:58.7205036Z"
+  },
+  {
+    "Id": "968bc30a5c584da9",
+    "Username": "haidong",
+    "PasswordHash": "6b86b273ff34fce19d6b804eff5a3f5747ada4eaa22f1d49c01e52ddb7875b4b",
+    "DisplayName": "\u0110\u00F4ng",
+    "AvatarPath": "",
+    "Role": "user",
+    "Status": "active",
+    "ResetCode": null,
+    "CreatedAt": "2026-06-13T05:20:18.3020338Z"
+  }
+]
