@@ -247,8 +247,6 @@ public class LoginForm : Form
         main.FormClosed += (_, _) => { client.Dispose(); Close(); };
         main.Show();
     }
-<<<<<<< HEAD
 }
-=======
-}
->>>>>>> caaafb54b6de495884be5b999f43bf8324db552c
+
+

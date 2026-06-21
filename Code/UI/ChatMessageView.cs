@@ -351,8 +351,6 @@ public class ChatMessageView : Panel
         }
         row.Dispose();
     }
-<<<<<<< HEAD
 }
-=======
-}
->>>>>>> caaafb54b6de495884be5b999f43bf8324db552c
+
+

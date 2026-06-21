@@ -680,8 +680,6 @@ Payload = new ChangePasswordPayload { Token = _client.Token!, OldPassword = oldP
         _client.OnPacket -= OnServerPacket;
         base.OnFormClosed(e);
     }
-<<<<<<< HEAD
 }
-=======
-}
->>>>>>> caaafb54b6de495884be5b999f43bf8324db552c
+
+
