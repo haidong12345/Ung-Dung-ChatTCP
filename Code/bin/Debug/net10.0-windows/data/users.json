@@ -9,5 +9,16 @@
     "Status": "active",
     "ResetCode": null,
     "CreatedAt": "2026-06-22T06:55:34.5524724Z"
+  },
+  {
+    "Id": "6a852a5009734e56",
+    "Username": "Thi\u00EAn Ph\u01B0\u1EDBc",
+    "PasswordHash": "93b49610b3cd7965bf016295111ff477b47a327566783d3c695b439722f9853a",
+    "DisplayName": "Thi\u00EAn Ph\u01B0\u1EDBc",
+    "AvatarPath": "",
+    "Role": "user",
+    "Status": "active",
+    "ResetCode": null,
+    "CreatedAt": "2026-06-22T09:04:03.821373Z"
   }
 ]

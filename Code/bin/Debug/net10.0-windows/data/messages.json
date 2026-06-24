@@ -1,0 +1,38 @@
+[
+  {
+    "Id": "b572234c63404d4a",
+    "FromUserId": "6a852a5009734e56",
+    "ToUserId": "c5cbf4afa4fe451b",
+    "Type": "image",
+    "Content": "",
+    "FilePath": "639177158653462553_812a3ea0066445e6.jpg",
+    "FileName": "download.jpg",
+    "Recalled": true,
+    "SeenBy": [
+      "6a852a5009734e56",
+      "c5cbf4afa4fe451b"
+    ],
+    "CreatedAt": "2026-06-22T09:04:25.3622012Z",
+    "ReplyToId": "",
+    "ReplyPreview": "",
+    "Reactions": []
+  },
+  {
+    "Id": "bbb3e346d0e74ef6",
+    "FromUserId": "c5cbf4afa4fe451b",
+    "ToUserId": "6a852a5009734e56",
+    "Type": "image",
+    "Content": "",
+    "FilePath": "639177160730377225_efeeba7b5be546b6.jpg",
+    "FileName": "download.jpg",
+    "Recalled": true,
+    "SeenBy": [
+      "c5cbf4afa4fe451b",
+      "6a852a5009734e56"
+    ],
+    "CreatedAt": "2026-06-22T09:07:53.0476176Z",
+    "ReplyToId": "",
+    "ReplyPreview": "",
+    "Reactions": []
+  }
+]
