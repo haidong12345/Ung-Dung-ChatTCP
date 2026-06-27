@@ -8,19 +8,19 @@
     "net10.0-windows": []
   },
   "packageFolders": {
-    "C:\\Users\\duylvh\\.nuget\\packages\\": {}
+    "C:\\Users\\USER\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\hoctap\\Lập Trình Mạng\\Ung-Dung-ChatTCP\\code\\MyApp.csproj",
+      "projectUniqueName": "D:\\LapTrinhMang\\Ung-Dung-ChatTCP\\Code\\MyApp.csproj",
       "projectName": "MyApp",
-      "projectPath": "D:\\hoctap\\Lập Trình Mạng\\Ung-Dung-ChatTCP\\code\\MyApp.csproj",
-      "packagesPath": "C:\\Users\\duylvh\\.nuget\\packages\\",
-      "outputPath": "D:\\hoctap\\Lập Trình Mạng\\Ung-Dung-ChatTCP\\code\\obj\\",
+      "projectPath": "D:\\LapTrinhMang\\Ung-Dung-ChatTCP\\Code\\MyApp.csproj",
+      "packagesPath": "C:\\Users\\USER\\.nuget\\packages\\",
+      "outputPath": "D:\\LapTrinhMang\\Ung-Dung-ChatTCP\\Code\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\duylvh\\AppData\\Roaming\\NuGet\\NuGet.Config"
+        "C:\\Users\\USER\\AppData\\Roaming\\NuGet\\NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net10.0-windows"
