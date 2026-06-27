@@ -113,17 +113,28 @@ public class LoginForm : Form
         return tab;
     }
 
-    /// <summary>Tách host và port từ chuỗi "127.0.0.1:5000".</summary>
-    private (string host, int port) ParseServer()
+    /// <summary>Tách host và port từ chuỗi "127.0.0.1:5000". Chỉ chấp nhận port 5000.</summary>
+    private bool TryParseServer(out string host, out int port)
     {
+        host = "";
+        port = 0;
         var parts = _txtServer.Text.Trim().Split(':');
-        int port = parts.Length > 1 && int.TryParse(parts[1], out var p) ? p : 5000;
-        return (parts[0], port);
+        if (parts.Length != 2 || string.IsNullOrWhiteSpace(parts[0]))
+            return false;
+        if (!int.TryParse(parts[1], out port) || port != 5000)
+            return false;
+        host = parts[0].Trim();
+        return true;
     }
 
     private async Task<ChatClient?> ConnectClientAsync()
     {
-        var (host, port) = ParseServer();
+        if (!TryParseServer(out var host, out var port))
+        {
+            _lblMsg.Text = "Không thể kết nối với Server";
+            return null;
+        }
+
         var client = new ChatClient { Host = host, Port = port };
         try
         {
