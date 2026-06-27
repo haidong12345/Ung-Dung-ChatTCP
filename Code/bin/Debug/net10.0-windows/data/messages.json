@@ -34,5 +34,131 @@
     "ReplyToId": "",
     "ReplyPreview": "",
     "Reactions": []
+  },
+  {
+    "Id": "ff39b63f88e145a8",
+    "FromUserId": "c5cbf4afa4fe451b",
+    "ToUserId": "6a852a5009734e56",
+    "Type": "text",
+    "Content": "Ch\u00E0o m\u1ECDi ng\u01B0\u1EDDi, bu\u1ED5i s\u00E1ng t\u1ED1t l\u00E0nh",
+    "FilePath": "",
+    "FileName": "",
+    "Recalled": false,
+    "SeenBy": [
+      "c5cbf4afa4fe451b",
+      "6a852a5009734e56"
+    ],
+    "CreatedAt": "2026-06-26T17:16:50.1680405Z",
+    "ReplyToId": "",
+    "ReplyPreview": "",
+    "Reactions": []
+  },
+  {
+    "Id": "d64868d5b5f64cc4",
+    "FromUserId": "c5cbf4afa4fe451b",
+    "ToUserId": "6a852a5009734e56",
+    "Type": "text",
+    "Content": "\u1EE8, \u00C1, \u1EA4, \u1EE6, \u00DD, \u1EF6, \u1EF2, \u1EF8",
+    "FilePath": "",
+    "FileName": "",
+    "Recalled": false,
+    "SeenBy": [
+      "c5cbf4afa4fe451b",
+      "6a852a5009734e56"
+    ],
+    "CreatedAt": "2026-06-26T17:37:57.4683793Z",
+    "ReplyToId": "",
+    "ReplyPreview": "",
+    "Reactions": []
+  },
+  {
+    "Id": "07ff82a9b4c5430f",
+    "FromUserId": "c5cbf4afa4fe451b",
+    "ToUserId": "6a852a5009734e56",
+    "Type": "text",
+    "Content": "",
+    "FilePath": "",
+    "FileName": "",
+    "Recalled": true,
+    "SeenBy": [
+      "c5cbf4afa4fe451b",
+      "6a852a5009734e56"
+    ],
+    "CreatedAt": "2026-06-26T17:40:24.672387Z",
+    "ReplyToId": "",
+    "ReplyPreview": "",
+    "Reactions": []
+  },
+  {
+    "Id": "71b32783470249cf",
+    "FromUserId": "c5cbf4afa4fe451b",
+    "ToUserId": "6a852a5009734e56",
+    "Type": "image",
+    "Content": "",
+    "FilePath": "639180924321590664_1b06298f9a72454a.jpg",
+    "FileName": "download.jpg",
+    "Recalled": true,
+    "SeenBy": [
+      "c5cbf4afa4fe451b",
+      "6a852a5009734e56"
+    ],
+    "CreatedAt": "2026-06-26T17:40:32.1631445Z",
+    "ReplyToId": "",
+    "ReplyPreview": "",
+    "Reactions": []
+  },
+  {
+    "Id": "f1149988a93a4f10",
+    "FromUserId": "6a852a5009734e56",
+    "ToUserId": "c5cbf4afa4fe451b",
+    "Type": "text",
+    "Content": "C\u1EA3m \u01A1n b\u1EA1n nhi\u1EC1u nha, b\u1EA1n c\u0169ng v\u1EADy",
+    "FilePath": "",
+    "FileName": "",
+    "Recalled": false,
+    "SeenBy": [
+      "6a852a5009734e56",
+      "c5cbf4afa4fe451b"
+    ],
+    "CreatedAt": "2026-06-26T19:16:19.2442764Z",
+    "ReplyToId": "ff39b63f88e145a8",
+    "ReplyPreview": "Ch\u00E0o m\u1ECDi ng\u01B0\u1EDDi, bu\u1ED5i s\u00E1ng t\u1ED1t l\u00E0nh",
+    "Reactions": []
+  },
+  {
+    "Id": "ede36a4b15e4477e",
+    "FromUserId": "c5cbf4afa4fe451b",
+    "ToUserId": "6a852a5009734e56",
+    "Type": "video",
+    "Content": "",
+    "FilePath": "639180988481666453_ce29ae5d4db0498b.mp4",
+    "FileName": "2024-04-14 16-21-32.mp4",
+    "Recalled": true,
+    "SeenBy": [
+      "c5cbf4afa4fe451b",
+      "6a852a5009734e56"
+    ],
+    "CreatedAt": "2026-06-26T19:27:28.1713421Z",
+    "ReplyToId": "",
+    "ReplyPreview": "",
+    "Reactions": []
+  },
+  {
+    "Id": "82b0411c3fc94572",
+    "FromUserId": "c5cbf4afa4fe451b",
+    "ToUserId": "6a852a5009734e56",
+    "Type": "file",
+    "Content": "",
+    "FilePath": "639180988648528579_94b843e615604d9f.docx",
+    "FileName": "H\u00ECnh \u1EA2nh  Minh Ch\u1EE9ng.docx",
+    "Recalled": true,
+    "SeenBy": [
+      "c5cbf4afa4fe451b",
+      "6a852a5009734e56"
+    ],
+    "CreatedAt": "2026-06-26T19:27:44.8544945Z",
+    "ReplyToId": "",
+    "ReplyPreview": "",
+    "Reactions": []
   }
 ]

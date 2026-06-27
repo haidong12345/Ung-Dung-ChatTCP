@@ -22,7 +22,6 @@ D:\hoctap\Lập Trình Mạng\Ung-Dung-ChatTCP\code\obj\Debug\net10.0-windows\My
 D:\hoctap\Lập Trình Mạng\Ung-Dung-ChatTCP\code\obj\Debug\net10.0-windows\MyApp.AssemblyInfoInputs.cache
 D:\hoctap\Lập Trình Mạng\Ung-Dung-ChatTCP\code\obj\Debug\net10.0-windows\MyApp.AssemblyInfo.cs
 D:\hoctap\Lập Trình Mạng\Ung-Dung-ChatTCP\code\obj\Debug\net10.0-windows\MyApp.csproj.CoreCompileInputs.cache
-D:\hoctap\Lập Trình Mạng\Ung-Dung-ChatTCP\code\obj\Debug\net10.0-windows\MyApp.sourcelink.json
 D:\hoctap\Lập Trình Mạng\Ung-Dung-ChatTCP\code\obj\Debug\net10.0-windows\MyApp.dll
 D:\hoctap\Lập Trình Mạng\Ung-Dung-ChatTCP\code\obj\Debug\net10.0-windows\refint\MyApp.dll
 D:\hoctap\Lập Trình Mạng\Ung-Dung-ChatTCP\code\obj\Debug\net10.0-windows\MyApp.pdb

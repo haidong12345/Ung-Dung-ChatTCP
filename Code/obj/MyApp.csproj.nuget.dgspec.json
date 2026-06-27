@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "D:\\hoctap\\Lập Trình Mạng\\Ung-Dung-ChatTCP\\code\\MyApp.csproj": {}
+    "D:\\hoctap\\Lập Trình Mạng\\Ung-Dung-ChatTCP\\Code\\MyApp.csproj": {}
   },
   "projects": {
-    "D:\\hoctap\\Lập Trình Mạng\\Ung-Dung-ChatTCP\\code\\MyApp.csproj": {
+    "D:\\hoctap\\Lập Trình Mạng\\Ung-Dung-ChatTCP\\Code\\MyApp.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\hoctap\\Lập Trình Mạng\\Ung-Dung-ChatTCP\\code\\MyApp.csproj",
+        "projectUniqueName": "D:\\hoctap\\Lập Trình Mạng\\Ung-Dung-ChatTCP\\Code\\MyApp.csproj",
         "projectName": "MyApp",
-        "projectPath": "D:\\hoctap\\Lập Trình Mạng\\Ung-Dung-ChatTCP\\code\\MyApp.csproj",
+        "projectPath": "D:\\hoctap\\Lập Trình Mạng\\Ung-Dung-ChatTCP\\Code\\MyApp.csproj",
         "packagesPath": "C:\\Users\\duylvh\\.nuget\\packages\\",
-        "outputPath": "D:\\hoctap\\Lập Trình Mạng\\Ung-Dung-ChatTCP\\code\\obj\\",
+        "outputPath": "D:\\hoctap\\Lập Trình Mạng\\Ung-Dung-ChatTCP\\Code\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\duylvh\\AppData\\Roaming\\NuGet\\NuGet.Config"

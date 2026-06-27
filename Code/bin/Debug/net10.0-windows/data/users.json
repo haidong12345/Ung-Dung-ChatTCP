@@ -13,12 +13,23 @@
   {
     "Id": "6a852a5009734e56",
     "Username": "Thi\u00EAn Ph\u01B0\u1EDBc",
-    "PasswordHash": "93b49610b3cd7965bf016295111ff477b47a327566783d3c695b439722f9853a",
-    "DisplayName": "Thi\u00EAn Ph\u01B0\u1EDBc",
-    "AvatarPath": "",
+    "PasswordHash": "af477913661a8c06f8b8740cff386f45dcc2d26b57839914876213c41f550541",
+    "DisplayName": "Ph\u01B0\u1EDBc",
+    "AvatarPath": "639180962551977215_14c7f6e2b6ee4b62.jpg",
     "Role": "user",
     "Status": "active",
     "ResetCode": null,
     "CreatedAt": "2026-06-22T09:04:03.821373Z"
+  },
+  {
+    "Id": "d20501240a7f43fa",
+    "Username": "Th\u1EED Nghi\u1EC7m",
+    "PasswordHash": "5d617f1a1e7b1f4962d438e907a4945885e869a7f0f5bc9d5e5d8e3e8ea7b546",
+    "DisplayName": "th\u1EED nghi\u1EC7m",
+    "AvatarPath": "",
+    "Role": "user",
+    "Status": "active",
+    "ResetCode": null,
+    "CreatedAt": "2026-06-26T19:47:48.7035081Z"
   }
 ]
