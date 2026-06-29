@@ -1,4 +1,5 @@
-bin/
-obj/
+[Bb]in/
+[Oo]bj/
+*.json
 node_modules/
 dist/
