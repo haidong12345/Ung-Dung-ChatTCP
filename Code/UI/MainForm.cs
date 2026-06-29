@@ -15,6 +15,8 @@ namespace ChatApp.UI;
 /// </summary>
 public class MainForm : Form
 {
+    public bool LoggedOut { get; private set; }
+
     private readonly ChatClient _client;
     private readonly ListBox _lstUsers = new() { Dock = DockStyle.Fill, IntegralHeight = false };
     private readonly ChatMessageView _msgView;
@@ -672,6 +674,7 @@ Payload = new ChangePasswordPayload { Token = _client.Token!, OldPassword = oldP
             Payload = new TokenPayload { Token = _client.Token! },
         }, "LOGOUT_OK");
         _client.Dispose();
+        LoggedOut = true;
         Close();
     }
 

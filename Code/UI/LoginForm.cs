@@ -255,7 +255,20 @@ public class LoginForm : Form
     {
         Hide();
         var main = new MainForm(client, users);
-        main.FormClosed += (_, _) => { client.Dispose(); Close(); };
+        main.FormClosed += (_, _) =>
+        {
+            if (main.LoggedOut)
+            {
+                _txtPass.Clear();
+                _lblMsg.Text = "";
+                _lblMsg.ForeColor = Color.DarkRed;
+                Show();
+                return;
+            }
+
+            client.Dispose();
+            Close();
+        };
         main.Show();
     }
 }

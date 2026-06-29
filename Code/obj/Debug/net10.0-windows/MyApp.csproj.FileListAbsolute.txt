@@ -41,3 +41,18 @@ C:\Users\HOANG DUNG\OneDrive\Tài liệu\Lập Trình Mạng\nhom6\hihi\Ung-Dung
 C:\Users\HOANG DUNG\OneDrive\Tài liệu\Lập Trình Mạng\nhom6\hihi\Ung-Dung-ChatTCP\Code\obj\Debug\net10.0-windows\MyApp.pdb
 C:\Users\HOANG DUNG\OneDrive\Tài liệu\Lập Trình Mạng\nhom6\hihi\Ung-Dung-ChatTCP\Code\obj\Debug\net10.0-windows\MyApp.genruntimeconfig.cache
 C:\Users\HOANG DUNG\OneDrive\Tài liệu\Lập Trình Mạng\nhom6\hihi\Ung-Dung-ChatTCP\Code\obj\Debug\net10.0-windows\ref\MyApp.dll
+C:\Users\Admin\Ung-Dung-ChatTCP\Code\bin\Debug\net10.0-windows\MyApp.exe
+C:\Users\Admin\Ung-Dung-ChatTCP\Code\bin\Debug\net10.0-windows\MyApp.deps.json
+C:\Users\Admin\Ung-Dung-ChatTCP\Code\bin\Debug\net10.0-windows\MyApp.runtimeconfig.json
+C:\Users\Admin\Ung-Dung-ChatTCP\Code\bin\Debug\net10.0-windows\MyApp.dll
+C:\Users\Admin\Ung-Dung-ChatTCP\Code\bin\Debug\net10.0-windows\MyApp.pdb
+C:\Users\Admin\Ung-Dung-ChatTCP\Code\obj\Debug\net10.0-windows\MyApp.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Admin\Ung-Dung-ChatTCP\Code\obj\Debug\net10.0-windows\MyApp.AssemblyInfoInputs.cache
+C:\Users\Admin\Ung-Dung-ChatTCP\Code\obj\Debug\net10.0-windows\MyApp.AssemblyInfo.cs
+C:\Users\Admin\Ung-Dung-ChatTCP\Code\obj\Debug\net10.0-windows\MyApp.csproj.CoreCompileInputs.cache
+C:\Users\Admin\Ung-Dung-ChatTCP\Code\obj\Debug\net10.0-windows\MyApp.sourcelink.json
+C:\Users\Admin\Ung-Dung-ChatTCP\Code\obj\Debug\net10.0-windows\MyApp.dll
+C:\Users\Admin\Ung-Dung-ChatTCP\Code\obj\Debug\net10.0-windows\refint\MyApp.dll
+C:\Users\Admin\Ung-Dung-ChatTCP\Code\obj\Debug\net10.0-windows\MyApp.pdb
+C:\Users\Admin\Ung-Dung-ChatTCP\Code\obj\Debug\net10.0-windows\MyApp.genruntimeconfig.cache
+C:\Users\Admin\Ung-Dung-ChatTCP\Code\obj\Debug\net10.0-windows\ref\MyApp.dll
