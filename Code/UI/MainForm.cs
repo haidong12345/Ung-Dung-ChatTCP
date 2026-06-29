@@ -65,7 +65,7 @@ var pnlMyProfile = new Panel { Dock = DockStyle.Top, Height = 56, BackColor = Co
 
         var main = new Panel { Dock = DockStyle.Fill };
 
-        var left = new Panel { Dock = DockStyle.Left, Width = 150 };
+        var left = new Panel { Dock = DockStyle.Left, Width = 260, MinimumSize = new Size(260, 0) };
         var leftTop = new Panel { Dock = DockStyle.Top, Height = 30 };
         leftTop.Controls.Add(new Label { Text = "Người chat", Location = new Point(4, 8), AutoSize = true });
         var btnRefresh = new Button { Text = "↻", Size = new Size(32, 24), Location = new Point(108, 3) };
