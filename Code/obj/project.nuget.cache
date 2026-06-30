@@ -1,8 +1,13 @@
 {
   "version": 2,
-  "dgSpecHash": "y0Q3KcybBOA=",
+  "dgSpecHash": "ynr0agKwYc0=",
   "success": true,
-  "projectFilePath": "C:\\Users\\Admin\\Ung-Dung-ChatTCP\\Code\\MyApp.csproj",
-  "expectedPackageFiles": [],
+  "projectFilePath": "D:\\Ung-Dung-ChatTCP\\code\\MyApp.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\Admin\\.nuget\\packages\\microsoft.netcore.app.ref\\9.0.17\\microsoft.netcore.app.ref.9.0.17.nupkg.sha512",
+    "C:\\Users\\Admin\\.nuget\\packages\\microsoft.windowsdesktop.app.ref\\9.0.17\\microsoft.windowsdesktop.app.ref.9.0.17.nupkg.sha512",
+    "C:\\Users\\Admin\\.nuget\\packages\\microsoft.aspnetcore.app.ref\\9.0.17\\microsoft.aspnetcore.app.ref.9.0.17.nupkg.sha512",
+    "C:\\Users\\Admin\\.nuget\\packages\\microsoft.netcore.app.host.win-x64\\9.0.17\\microsoft.netcore.app.host.win-x64.9.0.17.nupkg.sha512"
+  ],
   "logs": []
 }

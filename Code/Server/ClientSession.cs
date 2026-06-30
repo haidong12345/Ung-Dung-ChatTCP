@@ -41,6 +41,7 @@ public class ClientSession : IDisposable
         {
             if (UserId != null)
             {
+            
                 ChatServer.Sessions.Remove(Token ?? "");
                 ChatServer.UnregisterSession(UserId);
             }

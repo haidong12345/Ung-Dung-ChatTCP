@@ -15,6 +15,7 @@ public static class ChatServer
     private const int Port = 5000;
     private static TcpListener? _listener;
     private static bool _running;
+    private static CancellationTokenSource? _shutdownCts;
 
     // Bảng tra cứu sau khi đăng nhập:
     internal static readonly Dictionary<string, string> Sessions = new(); // token -> userId
@@ -26,30 +27,59 @@ public static class ChatServer
         if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
             AllocConsole(); // mở cửa sổ console trên Windows
 
+        _shutdownCts = new CancellationTokenSource();
         _listener = new TcpListener(IPAddress.Any, Port);
         _listener.Start();
         _running = true;
 
         Console.WriteLine($"=== Chat Server TCP - cong {Port} ===");
         Console.WriteLine("Admin mac dinh: admin / admin123");
-        Console.WriteLine("Nhan Enter de dung server...");
+        Console.WriteLine("Nhan Ctrl+C de dung server...");
 
-        _ = Task.Run(AcceptLoop);
-        Console.ReadLine();
+        _ = Task.Run(() => AcceptLoop(_shutdownCts.Token));
+
+        try
+        {
+            Console.CancelKeyPress += HandleCancelKeyPress;
+            _shutdownCts.Token.WaitHandle.WaitOne();
+        }
+        finally
+        {
+            Console.CancelKeyPress -= HandleCancelKeyPress;
+            Stop();
+        }
+    }
+
+    private static void HandleCancelKeyPress(object? sender, ConsoleCancelEventArgs e)
+    {
+        e.Cancel = true;
+        _shutdownCts?.Cancel();
+    }
+
+    private static void Stop()
+    {
+        if (!_running) return;
+
         _running = false;
-        _listener.Stop();
+        _listener?.Stop();
+        _shutdownCts?.Dispose();
+        _shutdownCts = null;
     }
 
     /// <summary>Vòng lặp chờ client mới kết nối.</summary>
-    private static async Task AcceptLoop()
+    private static async Task AcceptLoop(CancellationToken token)
     {
-        while (_running && _listener != null)
+        while (_running && _listener != null && !token.IsCancellationRequested)
         {
             try
             {
-                var client = await _listener.AcceptTcpClientAsync();
+                var client = await _listener.AcceptTcpClientAsync(token);
                 var session = new ClientSession(client);
                 _ = session.RunAsync(); // xử lý client trên luồng riêng
+            }
+            catch (OperationCanceledException) when (token.IsCancellationRequested)
+            {
+                break;
             }
             catch (Exception ex) when (_running)
             {

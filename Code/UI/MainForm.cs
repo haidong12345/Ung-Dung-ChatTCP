@@ -78,13 +78,13 @@ var pnlMyProfile = new Panel { Dock = DockStyle.Top, Height = 56, BackColor = Co
         _lstUsers.SelectedIndexChanged += (_, _) => _ = LoadChatAsync();
 
         var right = new Panel { Dock = DockStyle.Fill };
-        var headerPanel = new Panel { Dock = DockStyle.Top, Height = 40 };
+        var headerPanel = new Panel { Dock = DockStyle.Top, Height = 0, Visible = false };
         _lblChatHeader.AutoSize = false;
         _lblChatHeader.Dock = DockStyle.None;
         _lblChatHeader.Location = new Point(44, 10);
         _lblChatHeader.Width = 400;
-        headerPanel.Controls.Add(_picPartnerAvatar);
-        headerPanel.Controls.Add(_lblChatHeader);
+        //headerPanel.Controls.Add(_picPartnerAvatar);
+        //headerPanel.Controls.Add(_lblChatHeader);
         _lblTyping.Dock = DockStyle.Bottom;
 
         var btnCancelQuote = new Button { Text = "✕", Dock = DockStyle.Right, Width = 36, FlatStyle = FlatStyle.Flat };
@@ -278,7 +278,7 @@ case "MESSAGE_RECALLED":
         if (idx < 0 || _lstUsers.Tag is not List<UserInfo> list || idx >= list.Count || _users.Count == 0) return;
 
         _chatWith = list[idx];
-        _lblChatHeader.Text = $"  Đang chat với: {_chatWith.DisplayName}";
+        //_lblChatHeader.Text = $"  Đang chat với: {_chatWith.DisplayName}";
         ClearQuote();
         await AvatarHelper.LoadIntoAsync(_client, _picPartnerAvatar, _chatWith.AvatarPath, _chatWith.DisplayName);
 
